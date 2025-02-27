@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block body %}
+    <img src="{{ asset('home.png') }}" alt="Logo">
+    <br />
+    I'm {{name}} from {{country}}
+    <p></p>it's currently {{'now'|date('h:i A')}}
+    <br />
+    {# <a href={{path("about_page")}}>About page</a> #}
+{% endblock %}
