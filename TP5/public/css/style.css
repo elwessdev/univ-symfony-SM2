@@ -1,0 +1,21 @@
+/* body {
+    padding:30px;
+} */
+nav{
+    margin-bottom: 30px;
+}
+
+.lg{
+    width: 400px;
+    margin: 0 auto;
+    display: block;
+}
+footer{
+    margin-top: 50px;
+    text-align: center;
+    padding: 20px;
+    background-color: #EEE;
+}
+footer p{
+    margin:0;
+}

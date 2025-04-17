@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .registration-container {
+            margin: 50px auto 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .registration-container h2 {
+            margin-bottom: 1.5rem;
+            color: #333;
+            text-align: center;
+        }
+        .form-control {
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .form-check-label {
+            color: #555;
+        }
+        .form-text {
+            color: #6c757d;
+        }
+        .mb-3 {
+            margin-bottom: 1.5rem !important;
+        }
+        .alert-danger {
+            margin-bottom: 20px;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="registration-container">
+        <h2>Register</h2>
+        
+        {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+        {% endif %}
+        
+        <form action="{{ path('inscription_page') }}" method="POST">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" required name="username" minlength="3">
+                <div id="usernameHelp" class="form-text">Choose a unique username (minimum 3 characters).</div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required name="email">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" required name="password" minlength="6">
+                <div class="form-text">Password must be at least 6 characters.</div>
+            </div>
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" required name="confirm_password">
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+            
+            <div class="login-link">
+                <p>Already have an account? <a href="{{ path('connexion_page') }}">Login here</a></p>
+            </div>
+        </form>
+    </div>
+{% endblock %}
