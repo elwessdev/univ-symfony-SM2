@@ -3,58 +3,171 @@
 {% block title %}Register{% endblock %}
 
 {% block stylesheets %}
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .registration-container {
-            margin: 50px auto 0 auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-        .registration-container h2 {
-            margin-bottom: 1.5rem;
-            color: #333;
-            text-align: center;
-        }
-        .form-control {
-            border-radius: 5px;
-            padding: 10px;
-        }
-        .btn-primary {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: #007bff;
-            border: none;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-        .form-check-label {
-            color: #555;
-        }
-        .form-text {
-            color: #6c757d;
-        }
-        .mb-3 {
-            margin-bottom: 1.5rem !important;
-        }
-        .alert-danger {
-            margin-bottom: 20px;
-        }
-        .login-link {
-            text-align: center;
-            margin-top: 15px;
-        }
-    </style>
+<style>
+    :root {
+        --primary-color: #6366F1;
+        --primary-hover: #4F46E5;
+        --secondary-color: #6366F1;
+        --secondary-hover: #6366F1;
+        --accent-color: #F59E0B;
+        --text-primary: #1F2937;
+        --text-secondary: #4B5563;
+        --bg-main: #F9FAFB;
+        --bg-card: #FFFFFF;
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+        --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+        --radius-sm: 0.5rem;
+        --radius-md: 0.75rem;
+        --radius-lg: 1rem;
+        --transition: all 0.2s ease;
+    }
+
+    body {
+        background-color: var(--bg-main);
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        color: var(--text-primary);
+        min-height: 100vh;
+    }
+
+    .registration-container {
+        margin: 0 auto;
+        background-color: var(--bg-card);
+        padding: 2.5rem;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        width: 100%;
+        max-width: 450px;
+        border-bottom: 4px solid var(--secondary-color);
+        transition: var(--transition);
+        margin-top: 30px;
+    }
+    
+    .registration-container:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-5px);
+    }
+
+    .registration-container h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        margin-bottom: 1.75rem;
+        text-align: center;
+        position: relative;
+        padding-bottom: 12px;
+    }
+    
+    .registration-container h2:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+        border-radius: 2px;
+    }
+
+    .form-control {
+        border-radius: var(--radius-md);
+        padding: 0.75rem 1rem;
+        border: 1px solid #e2e8f0;
+        transition: var(--transition);
+        font-size: 1rem;
+    }
+    
+    .form-control:focus {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        outline: none;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: var(--radius-md);
+        background-color: var(--secondary-color);
+        border: none;
+        color: white;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: var(--transition);
+        margin-top: 1rem;
+    }
+
+    .btn-primary:hover {
+        background-color: var(--secondary-hover);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .alert-danger {
+        background-color: #FEE2E2;
+        color: #B91C1C;
+        border: 1px solid #F87171;
+        border-radius: var(--radius-md);
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-check-label {
+        color: var(--text-secondary);
+        cursor: pointer;
+    }
+    
+    .form-check {
+        display: flex;
+        align-items: center;
+    }
+    
+    .form-check-input {
+        margin-right: 0.5rem;
+        cursor: pointer;
+    }
+
+    .form-text {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+    .mb-3 {
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .login-link {
+        text-align: center;
+        margin-top: 1.5rem;
+        color: var(--text-secondary);
+    }
+    
+    .login-link a {
+        color: var(--primary-color);
+        font-weight: 600;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+    
+    .login-link a:hover {
+        color: var(--primary-hover);
+        text-decoration: underline;
+    }
+</style>
 {% endblock %}
 
 {% block body %}
     <div class="registration-container">
-        <h2>Register</h2>
+        <h2>Create Account</h2>
         
         {% if error %}
             <div class="alert alert-danger">
@@ -65,27 +178,27 @@
         <form action="{{ path('inscription_page') }}" method="POST">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" required name="username" minlength="3">
+                <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" required name="username" minlength="3" placeholder="Enter your username">
                 <div id="usernameHelp" class="form-text">Choose a unique username (minimum 3 characters).</div>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required name="email">
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" required name="email" placeholder="Enter your email">
                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" required name="password" minlength="6">
+                <input type="password" class="form-control" id="password" required name="password" minlength="6" placeholder="Enter your password">
                 <div class="form-text">Password must be at least 6 characters.</div>
             </div>
             <div class="mb-3">
                 <label for="confirmPassword" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmPassword" required name="confirm_password">
+                <input type="password" class="form-control" id="confirmPassword" required name="confirm_password" placeholder="Confirm your password">
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
             
             <div class="login-link">
-                <p>Already have an account? <a href="{{ path('connexion_page') }}">Login here</a></p>
+                Already have an account? <a href="{{ path('connexion_page') }}">Login here</a>
             </div>
         </form>
     </div>

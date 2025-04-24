@@ -2,9 +2,164 @@
 
 {% block title %}Edit Note{% endblock %}
 
+{% block stylesheets %}
+<style>
+    :root {
+        --primary-color: #6366F1;
+        --primary-hover: #4F46E5;
+        --secondary-color: #6366F1;
+        --secondary-hover: #6366F1;
+        --accent-color: #F59E0B;
+        --danger-color: #EF4444;
+        --danger-hover: #DC2626;
+        --text-primary: #1F2937;
+        --text-secondary: #4B5563;
+        --bg-main: #F9FAFB;
+        --bg-card: #FFFFFF;
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+        --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+        --radius-sm: 0.5rem;
+        --radius-md: 0.75rem;
+        --radius-lg: 1rem;
+        --transition: all 0.2s ease;
+    }
+
+    body {
+        background-color: var(--bg-main);
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        color: var(--text-primary);
+    }
+
+    .form-container {
+        margin: 2.5rem auto;
+        padding: 2.5rem;
+        max-width: 800px;
+        background-color: var(--bg-card);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        border-bottom: 4px solid var(--primary-color);
+    }
+
+    .form-title {
+        font-size: 1.875rem;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: var(--text-primary);
+        position: relative;
+        padding-bottom: 12px;
+    }
+    
+    .form-title:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        border-radius: 2px;
+    }
+
+    .form-card {
+        background-color: var(--bg-card);
+        padding: 2rem;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+    }
+    
+    .form-card:hover {
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-control {
+        border-radius: var(--radius-md);
+        padding: 0.75rem 1rem;
+        border: 1px solid #e2e8f0;
+        width: 100%;
+        transition: var(--transition);
+        font-size: 1rem;
+        resize: vertical;
+    }
+    
+    .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        outline: none;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1.5rem;
+    }
+    
+    .btn-success {
+        background-color: var(--secondary-color);
+        border: none;
+        padding: 0.75rem 1.75rem;
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        color: white;
+        cursor: pointer;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+    }
+    
+    .btn-success:hover {
+        background-color: var(--secondary-hover);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+    }
+    
+    .btn-secondary {
+        background-color: var(--text-secondary);
+        border: none;
+        padding: 0.75rem 1.75rem;
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        color: white;
+        text-decoration: none;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+    }
+    
+    .btn-secondary:hover {
+        background-color: var(--text-primary);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+    }
+
+    .alert {
+        margin: 1.5rem auto;
+        padding: 1rem;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+        border: none;
+    }
+    
+    .alert-danger {
+        background-color: #FEE2E2;
+        color: #B91C1C;
+        border-left: 4px solid var(--danger-color);
+    }
+</style>
+{% endblock %}
+
 {% block body %}
-<div class="container mt-4">
-    <h1>Edit Note</h1>
+<div class="form-container">
+    <h1 class="form-title">Edit Note</h1>
     
     {% for message in app.flashes('error') %}
         <div class="alert alert-danger">
@@ -12,19 +167,17 @@
         </div>
     {% endfor %}
     
-    <div class="card">
-        <div class="card-body">
-            <form method="post">
-                <div class="mb-3">
-                    <label for="note_text" class="form-label">Note Content</label>
-                    <textarea class="form-control" id="note_text" name="note_text" rows="5" required>{{ note.noteText }}</textarea>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-success">Update Note</button>
-                    <a href="{{ path('home_page') }}" class="btn btn-secondary">Back to Notes</a>
-                </div>
-            </form>
-        </div>
+    <div class="form-card">
+        <form method="post">
+            <div class="mb-3">
+                <label for="note_text" class="form-label">Note Content</label>
+                <textarea class="form-control" id="note_text" name="note_text" rows="8" required>{{ note.noteText }}</textarea>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-success">Update Note</button>
+                <a href="{{ path('home_page') }}" class="btn-secondary">Back to Notes</a>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock %}
